@@ -167,42 +167,6 @@ oc get crd | grep cert-manager
 # Expected: certificate.cert-manager.io, clusterissuer.cert-manager.io, issuer.cert-manager.io, etc.
 ```
 
-##### Post-Installation Configuration (Optional but Recommended)
-
-Create a default `ClusterIssuer` for Let's Encrypt (for test/non-production):
-
-```bash
-cat <<'EOF' | oc apply -f -
-apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
-metadata:
-  name: letsencrypt-staging
-spec:
-  acme:
-    server: https://acme-staging-v02.api.letsencrypt.org/directory
-    email: your-email@example.com
-    privateKeySecretRef:
-      name: letsencrypt-staging
-    solvers:
-      - http01:
-          ingress: {}
----
-apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
-metadata:
-  name: letsencrypt-production
-spec:
-  acme:
-    server: https://acme-v02.api.letsencrypt.org/directory
-    email: your-email@example.com
-    privateKeySecretRef:
-      name: letsencrypt-production
-    solvers:
-      - http01:
-          ingress: {}
-EOF
-```
-
 ---
 
 #### 2.3.2 Red Hat build of Kueue
@@ -941,4 +905,3 @@ echo "Service Mesh v3: $(oc get deployment -n openshift-operators -l app=istiod 
 echo "Kueue: $(oc get deployment -n kueue-system kueue-controller-manager -o jsonpath='{.status.readyReplicas}/{.status.replicas}' 2>/dev/null || echo 'Not installed')"
 echo "JobSet: $(oc get deployment -n jobset-system jobset-controller-manager -o jsonpath='{.status.readyReplicas}/{.status.replicas}' 2>/dev/null || echo 'Not installed')"
 ```
-
