@@ -57,7 +57,7 @@ Establishing cluster health and alignment with initial state requirements forms 
 
 | Component / Protocol | Requirement Standard | Notes & Mandates |
 | :--- | :--- | :--- |
-| **OpenShift Container Platform (OCP)** | v4.19.6+ *(Recommended: 4.19.9+)* | Required for full API compatibility with RHOAI 3.5. |
+| **OpenShift Container Platform (OCP)** | v4.19.9+ *(Recommended: 4.19.9+)* | Required for full API compatibility with RHOAI 3.5. |
 | **Base RHOAI Operator State** | Version ≥ 2.25.6 | Must be stabilized on the latest 2.25.x line (e.g., `2.25.10`) before attempting 3.x transitions. |
 | **cert-manager for Red Hat OpenShift** | Latest stable (1.15.x or higher) | **MUST be installed before RHOAI upgrade.** Provides TLS certificate management for all RHOAI components. |
 | **Red Hat Service Mesh v3** | Installed automatically by RHOAI 3.3+ | Service Mesh v3 is deployed automatically during RHOAI upgrade. If legacy v2 exists, it must be removed first. |
@@ -74,7 +74,7 @@ Before beginning any operator installations, validate that your cluster meets fo
 #### Verify Cluster Version
 ```bash
 oc version
-# Expected output: OpenShift v4.19.x or higher
+# Expected output: OpenShift v4.19.9 or higher
 ```
 
 #### Check Current RHOAI Version
